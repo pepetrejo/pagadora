@@ -2,12 +2,12 @@ package com.pepetrejo.pagadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-
+import android.widget.Toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var in20 = findViewById<View>(R.id.in20) as EditText
+        var in20 = findViewById<View>(R.id.in20) as EditText? // puede ser null
         var in10 = findViewById<View>(R.id.in10) as EditText
         var in1 = findViewById<View>(R.id.in1) as EditText
         var in05 = findViewById<View>(R.id.in05) as EditText
@@ -34,10 +34,22 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
         btnCalcular.setOnClickListener {
-            var por20 = (in20.text.toString().toInt() * 20).toString()
-            total20.text = por20 + "€"
+
+
+
+
+           var null20: Int = in20?.text?.length ?: 0 // Longitud: 0 es nulo null20 = 0
+
+            if (null20 == 0){
+                println("in20 es nulo")
+                total20.text = "0"
+            }else {
+                println("in20 no es nulo")
+
+
+            var por20 = (in20?.text.toString().toInt() * 20).toString()
+                total20.text = por20 + "€"}
 
             var por10 = (in10.text.toString().toInt() * 10).toString()
             total10.text = por10 + "€"
@@ -51,10 +63,11 @@ class MainActivity : AppCompatActivity() {
             var por01 = (in01.text.toString().toFloat() * 0.1f).toString()
             total01.text = por01 +"€"
 
+            /*//Mientras soluciono el null
             var sumando: String = (por20.toFloat() + por10.toFloat() + por1.toFloat() + por05.toFloat() + por01.toFloat()).toString()
             println(sumando)
             suma.text = sumando + "€"
-
+            */
         }
 
         btnBorrar.setOnClickListener {
