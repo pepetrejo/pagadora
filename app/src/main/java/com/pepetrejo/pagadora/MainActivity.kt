@@ -1,76 +1,59 @@
 package com.pepetrejo.pagadora
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import java.text.DecimalFormat
+import androidx.appcompat.app.AppCompatActivity
+import com.pepetrejo.pagadora.databinding.ActivityMainBinding
+import java.net.HttpCookie.parse
+import java.util.logging.Level.parse
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        var in20 = findViewById<View>(R.id.in20) as EditText // puede ser null
-        var in10 = findViewById<View>(R.id.in10) as EditText
-        var in1 = findViewById<View>(R.id.in1) as EditText
-        var in05 = findViewById<View>(R.id.in05) as EditText
-        var in01 = findViewById<View>(R.id.in01) as EditText
-        val btnCalcular = findViewById<View>(R.id.btnCalcular) as Button
-        val btnBorrar = findViewById<View>(R.id.btnBorrar) as Button
-        var pagadora = findViewById<View>(R.id.pagadora) as EditText
-
-        var total20 = findViewById<View>(R.id.calculo20) as TextView
-        var total10 = findViewById<View>(R.id.calculo10) as TextView
-        var total1 = findViewById<View>(R.id.calculo1) as TextView
-        var total05 = findViewById<View>(R.id.calculo05) as TextView
-        var total01 = findViewById<View>(R.id.calculo01) as TextView
-        var suma = findViewById<View>(R.id.sumaTotal) as TextView
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
+        binding.btnCalcular.setOnClickListener {
 
-        btnCalcular.setOnClickListener {
+            val btnCalcular = binding.btnCalcular // este creo que no vale para nada pasarla a variable
+            val btnBorrar = binding.btnBorrar
+            var pagadora = binding.pagadora.text.toString()
 
 
+            var in20: Float = binding.in20.text.toString().toFloat() //pasa el EditText a Float
+            var total20 = in20 * 20
+            binding.calculo20.text = total20.toString() + "€" //Muestra la var en el TextView. obliga a pasarlo a String
+            println(total20)
 
+            var in10: Float = binding.in10.text.toString().toFloat()
+            var total10 = in10 * 10
+            binding.calculo10.text = total10.toString() + "€"
+            println(total10)
 
-            var por20 = (in20.text.toString().toInt() * 20).toString()
-            total20.text = por20 + "€"
+            var in1: Float = binding.in1.text.toString().toFloat()
+            var total1 = in1 * 10
+            binding.calculo1.text = total1.toString() + "€"
+            println(total1)
 
-            var por10 = (in10.text.toString().toInt() * 10).toString()
-            total10.text = por10 + "€"
+            var in05: Float = binding.in05.text.toString().toFloat()
+            var total05 = in05 * 0.5
+            binding.calculo05.text = total05.toString() + "€"
+            println(total05)
 
-            var por1 = (in1.text.toString().toInt() * 1).toString()
-            total1.text = por1 + "€"
+            var in01: Float = binding.in01.text.toString().toFloat()
+            var total01 = in01 * 0.10
+            binding.calculo01.text = total01.toString() + "€"
+            println(total01)
 
-            var por05 = (in05.text.toString().toFloat() * 0.5f).toString()
-            total05.text = por05 + "€"
-
-            var por01 = (in01.text.toString().toFloat() * 0.1f).toString()
-            total01.text = por01 +"€"
-
-           /*
-            var por01Numero = por01.toString().toFloat()
-            var a: Float
-            println("%.2f".format(por01Numero))
-            total01.text = ("%2f".format(por01Numero))
-            */
-
-            //var sumando: String = (por20.toFloat() + por10.toFloat() + por1.toFloat() + por05.toFloat() + por01.toFloat()).toString()
-
-           // suma.text = sumando + "€"
-
-           // println(sumando)
-
+            var sumatotal = total20 + total10 + total1 + total05 + total01
+            binding.sumaTotal.text = sumatotal.toString() + ("€")
+            println(sumatotal)
 
         }
 
-        btnBorrar.setOnClickListener {
+
+        binding.btnBorrar.setOnClickListener {
 
             val intent = intent
             finish()
@@ -78,13 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
     }
-
-
-
-
-
 
 
 }
