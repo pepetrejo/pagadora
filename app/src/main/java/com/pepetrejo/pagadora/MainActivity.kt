@@ -1,6 +1,9 @@
 package com.pepetrejo.pagadora
 
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.pepetrejo.pagadora.databinding.ActivityMainBinding
 import java.net.HttpCookie.parse
@@ -20,34 +23,65 @@ class MainActivity : AppCompatActivity() {
             val btnBorrar = binding.btnBorrar
             var pagadora = binding.pagadora.text.toString()
 
+            //println(String.format("%.2f",12.34654).toFloat()) redondea a 2 decimales( no me sirve)
 
-            var in20: Float = binding.in20.text.toString().toFloat() //pasa el EditText a Float
-            var total20 = in20 * 20
-            binding.calculo20.text = total20.toString() + "€" //Muestra la var en el TextView. obliga a pasarlo a String
-            println(total20)
+            var in20 = 0
+            if (binding.in20.text.isEmpty()) {
+                in20 = 0
+            } else {
+                in20 = binding.in20.text.toString().toInt()}  //pasa el EditText a Int
 
-            var in10: Float = binding.in10.text.toString().toFloat()
-            var total10 = in10 * 10
-            binding.calculo10.text = total10.toString() + "€"
-            println(total10)
+            var total20 = in20 * 20.0 //Con ##.0 me pone un decimal, no se poner dos decimales
+            binding.calculo20.text = total20.toString() + "0€"  //he añadido el 0 porque solo me pone 1 decimal, esto es un poco cutre
 
-            var in1: Float = binding.in1.text.toString().toFloat()
-            var total1 = in1 * 10
-            binding.calculo1.text = total1.toString() + "€"
-            println(total1)
+            var in10 = 0
+            if (binding.in10.text.isEmpty()) {
+                in10 = 0
+            } else {
+                in10 = binding.in10.text.toString().toInt()}  //Muestra la var en el TextView. obliga a pasarlo a String
 
-            var in05: Float = binding.in05.text.toString().toFloat()
+            var total10 = in10 * 10.0
+            binding.calculo10.text = total10.toString() + "0€"
+
+            var in1 = 0
+            if (binding.in1.text.isEmpty()) {
+                in1 = 0
+            } else {
+                in1 = binding.in1.text.toString().toInt()}
+
+            var total1 = in1 * 1.0
+            binding.calculo1.text = total1.toString() + "0€"
+
+            var in05 = 0
+            if (binding.in05.text.isEmpty()) {
+                in05 = 0
+            } else {
+                in05 = binding.in05.text.toString().toInt()}
+
             var total05 = in05 * 0.5
-            binding.calculo05.text = total05.toString() + "€"
-            println(total05)
+            binding.calculo05.text = total05.toString() + "0€"
 
-            var in01: Float = binding.in01.text.toString().toFloat()
-            var total01 = in01 * 0.10
-            binding.calculo01.text = total01.toString() + "€"
-            println(total01)
+            var in01 = 0
+            if (binding.in01.text.isEmpty()) {
+                in01 = 0
+            } else {
+                in01 = binding.in01.text.toString().toInt()}
+
+            var total01 = in01 * 0.1
+            binding.calculo01.text = total01.toString() + "0€"
+
+            //esto funciona!!!
+
+
+            /* Forma anterior que no permitía Empty (campo vacio)
+         var in01: Float = binding.in01.text.toString().toFloat()
+         var total01 = in01 * 0.10
+         binding.calculo01.text = total01.toString() + "0€"
+         println(total01)
+          */
 
             var sumatotal = total20 + total10 + total1 + total05 + total01
-            binding.sumaTotal.text = sumatotal.toString() + ("€")
+            binding.sumaTotal.text = sumatotal.toString() + ("0€")
             println(sumatotal)
 
         }
@@ -55,12 +89,37 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnBorrar.setOnClickListener {
 
-            val intent = intent
-            finish()
-            startActivity(intent)
+            // Initialize a new instance of
+            val builder = AlertDialog.Builder(this@MainActivity)
+
+            // Set the alert dialog title
+            builder.setTitle("Borrar datos")
+
+            // Display a message on alert dialog
+            builder.setMessage("¿Esta seguro que quiere borrar los datos?")
+
+            // Set a positive button and its click listener on alert dialog
+            builder.setPositiveButton("Si") { dialog, which ->
+                // Do something when user press the positive button
+                Toast.makeText(applicationContext, "Datos borrados", Toast.LENGTH_SHORT).show()
+
+                // Reinicia la app y se borran los datos
+                val intent = intent
+                finish()
+                startActivity(intent)
+            }
+
+            // Display a negative button on alert dialog
+            builder.setNegativeButton("No") { dialog, which ->
+                Toast.makeText(applicationContext, "Cancelado", Toast.LENGTH_SHORT).show()
+            }
+
+            // Finally, make the alert dialog using builder
+            val dialog: AlertDialog = builder.create()
+
+            // Display the alert dialog on app interface
+            dialog.show()
         }
-
-
     }
 
 

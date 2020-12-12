@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B4ECF3"
+    android:background="#2196F3"
     tools:context=".MainActivity">
+
+    <!--android:theme="@style/Button.White"
+      android:background="@color/white"
+      android:backgroundTintMode="@color/white"-->
 
     <Button
         android:id="@+id/btnCalcular"
@@ -15,7 +19,7 @@
         android:layout_marginEnd="10dp"
         android:text="Calcular"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sumaTotal" />
 
     <EditText
         android:id="@+id/pagadora"
@@ -26,40 +30,40 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Pagadora"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:textSize="24sp"
-        android:imeOptions="actionDone"
         app:layout_constraintEnd_toStartOf="@+id/btnCalcular"
         app:layout_constraintStart_toEndOf="@+id/btnBorrar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/total" />
 
     <EditText
         android:id="@+id/in20"
         android:layout_width="75dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="right|center_vertical"
-        android:inputType="number"
-        android:text="0"
-        android:textSize="30sp"
+        android:hint="0"
         android:imeOptions="actionDone"
+        android:inputType="number"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/calculo20"
         app:layout_constraintStart_toEndOf="@+id/bill20"
-        app:layout_constraintTop_toBottomOf="@+id/pagadora" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/calculo20"
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:gravity="right|center_vertical"
-        android:text="0"
+        android:text="0.00€"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pagadora" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/in10"
@@ -69,10 +73,10 @@
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="right|center_vertical"
-        android:inputType="number"
-        android:text="0"
-        android:textSize="30sp"
+        android:hint="0"
         android:imeOptions="actionDone"
+        android:inputType="number"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/calculo10"
         app:layout_constraintStart_toEndOf="@+id/bill10"
         app:layout_constraintTop_toBottomOf="@+id/in20" />
@@ -84,7 +88,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:gravity="right|center_vertical"
-        android:text="0"
+        android:text="0.00€"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculo20" />
@@ -97,10 +101,10 @@
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="right|center_vertical"
-        android:inputType="number"
-        android:text="0"
-        android:textSize="30sp"
+        android:hint="0"
         android:imeOptions="actionDone"
+        android:inputType="number"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/calculo1"
         app:layout_constraintStart_toEndOf="@+id/mon1"
         app:layout_constraintTop_toBottomOf="@+id/in10" />
@@ -112,47 +116,46 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:gravity="right|center_vertical"
-        android:text="0"
+        android:text="0.00€"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculo10" />
 
     <TextView
         android:id="@+id/sumaTotal"
-        android:layout_width="200dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:gravity="right|center_vertical"
-        android:text="0"
+        android:text="0.00€"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculo01" />
 
     <TextView
         android:id="@+id/total"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
         android:gravity="center"
         android:text="Total"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/sumaTotal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mon01" />
+        app:layout_constraintTop_toBottomOf="@+id/in01" />
 
     <TextView
         android:id="@+id/bill20"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="Billetes 20€"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pagadora" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/bill10"
@@ -185,7 +188,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Monedas 0,5€"
+        android:text="Monedas 0,50€"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mon1" />
@@ -198,10 +201,10 @@
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="right|center_vertical"
-        android:inputType="number"
-        android:text="0"
-        android:textSize="30sp"
+        android:hint="0"
         android:imeOptions="actionDone"
+        android:inputType="number"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/calculo05"
         app:layout_constraintStart_toEndOf="@+id/mon05"
         app:layout_constraintTop_toBottomOf="@+id/in1" />
@@ -213,7 +216,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:gravity="right|center_vertical"
-        android:text="0"
+        android:text="0.00€"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculo1" />
@@ -225,7 +228,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Monedas 0,1€"
+        android:text="Monedas 0,10€"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mon05" />
@@ -237,7 +240,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:gravity="right|center_vertical"
-        android:text="0"
+        android:text="0.00€"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculo05" />
@@ -250,10 +253,10 @@
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="right|center_vertical"
-        android:inputType="number"
-        android:text="0"
-        android:textSize="30sp"
+        android:hint="0"
         android:imeOptions="actionDone"
+        android:inputType="number"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/calculo01"
         app:layout_constraintStart_toEndOf="@+id/mon01"
         app:layout_constraintTop_toBottomOf="@+id/in05" />
@@ -266,6 +269,6 @@
         android:layout_marginTop="10dp"
         android:text="Borrar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/total" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
